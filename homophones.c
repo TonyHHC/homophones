@@ -23,7 +23,7 @@ char* SplitKey(char *strLine, char *strKey)
 		else
 			break;
 	}
-	strKey[i] = NULL;
+	strKey[i] = 0;
 
 	return strKey;
 }
@@ -51,7 +51,7 @@ char* SplitPhonemes(char *strLine, int iNum, char *strPhonemes)
 	for (i = i + 1, j = 0; i < (int)strlen(strLine); i++, j++)
 		strPhonemes[j] = strLine[i];
 
-	strPhonemes[j] = NULL;
+	strPhonemes[j] = 0;
 
 	return strPhonemes;
 }
@@ -105,6 +105,8 @@ int main(int argc, char *argv[])
 	while (fgets(line, sizeof(line), fp) != NULL)
 	{
 		line[strlen(line) - 1] = 0;
+		if(line[strlen(line) - 1] == 13)
+			line[strlen(line) - 1] = 0;
 
 		SplitKey(line, strBuf);
 		strcpy(g_strKey[iIndex], strBuf);
